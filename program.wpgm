@@ -1,0 +1,31 @@
+import wollok.game.*
+import pacman.*
+
+program pacman {
+	
+	// límites del juego
+	game.width(20)
+	game.height(12)
+	game.cellSize(30)
+	game.title("Pacman")
+	
+	// fondo
+	game.boardGround("pacmanBackground.jpg")
+	
+	// personaje principal
+	game.addVisualCharacter(pacman)
+	game.addVisual(rival)
+	
+	game.onTick(1.randomUpTo(5) * 500, "movimiento",{rival.acercaseA(pacman)})
+	
+	game.whenCollideDo(rival,{personaje => personaje.chocarCon(rival)
+		if(pacman.vidas()==0) game.stop() })
+		
+	
+	
+	
+	
+	// que arranque el juego!
+	game.start()
+	
+}
